@@ -42,6 +42,13 @@ Additional questions will be added as new patterns emerge during the analysis.
 
 ---
 
+## Sample Visualization
+
+### Top 10 Arrest Charges
+
+![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
+
+---
 ## Tools Used
 
 - R
