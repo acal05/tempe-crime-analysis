@@ -22,7 +22,7 @@ top_charges <- crime_data %>%
 top_charges
 
 #Make a plot for top ten charges
-ggplot(top_charges, aes(x = reorder(charge, n), y = n)) +
+top10_plot <- ggplot(top_charges, aes(x = reorder(charge, n), y = n)) +
   geom_col(
     fill = "steelblue",
     color = "black") +
@@ -41,6 +41,15 @@ ggplot(top_charges, aes(x = reorder(charge, n), y = n)) +
    
     )
   )
+top10_plot
+#Saving the top 10 charges plot
+ggsave(
+  filename = "plots/top_10_arrest_charges.png",
+  plot = top10_plot,
+  width = 10,
+  height = 6,
+  dpi = 300,
+)
 #Seeing what is in the arrest_dt column
 class(crime_data$arrest_dt)
 #Getting the exact format of the arrest_dt column
