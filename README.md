@@ -53,7 +53,6 @@ The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warr
 
 Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
 
-This chart provides an initial overview of the most frequent arrest categories and helps guide later analysis into when and where these offenses occur.
 ---
 ## 2. Seasonal Arrests Patterns
 ![Top 10 Arrest Charges](plots/seasonal_arrests_bar_chart.png)
