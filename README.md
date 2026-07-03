@@ -54,15 +54,20 @@ The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warr
 Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
 
 ---
-## 2. Seasonal Arrests Patterns
-![Top 10 Arrest Charges](plots/seasonal_arrests_bar_chart.png)
-### Seasonal Arrest Patterns Analysis
+## 2.a. Seasonal Arrest Patterns (Bar Chart)
+![Seasonal Arrests Bar Chart](plots/seasonal_arrests_bar_chart.png)
+### Seasonal Arrest Patterns Bar Chart Analysis
 - Arrest activity remains relatively consistent throughout the year.
 - Summer records the highest number of arrests (11,412), while Winter has the fewest (10,525).
 - Seasonal differences are modest, suggesting that arrests do not vary dramatically between seasons.
 - Future analyses by month and hour may reveal more detailed temporal patterns that are not visible at the seasonal level.
+## 2.b. Seasonal Arrest Patterns (Line Graph)
+![Seasonal Arrests Line Graph](plots/seasonal_arrests_line_graph.png)
+### Seasonal Arrest Line Graph Analysis
+-The overall pattern suggests a modest seasonal increase during the warmer months rather than dramatic fluctuations throughout the year.
+-The line graph emphasizes the progression of arrests across seasons, making the overall trend easier to identify than the bar chart.
 ## Tools Used
-
+##
 - R
 - RStudio
 - tidyverse
