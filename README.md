@@ -41,10 +41,10 @@ Current questions include:
 Additional questions will be added as new patterns emerge during the analysis.
 
 ---
+# Analysis
 
-## Sample Visualization
-
-### Top 10 Arrest Charges
+## 1. Top 10 Arrest Charges
+### Visualization
 
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
 ### Top 10 Arrest Charges Analysis
@@ -55,6 +55,13 @@ Several of the top charges are related to warrants, drug offenses, trespassing, 
 
 This chart provides an initial overview of the most frequent arrest categories and helps guide later analysis into when and where these offenses occur.
 ---
+## 2. Seasonal Arrests Patterns
+![Top 10 Arrest Charges](plots/seasonal_arrests_bar_chart.png)
+### Seasonal Arrest Patterns Analysis
+- Arrest activity remains relatively consistent throughout the year.
+- Summer records the highest number of arrests (11,412), while Winter has the fewest (10,525).
+- Seasonal differences are modest, suggesting that arrests do not vary dramatically between seasons.
+- Future analyses by month and hour may reveal more detailed temporal patterns that are not visible at the seasonal level.
 ## Tools Used
 
 - R
