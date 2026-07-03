@@ -47,7 +47,13 @@ Additional questions will be added as new patterns emerge during the analysis.
 ### Top 10 Arrest Charges
 
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
+### Top 10 Arrest Charges Analysis
 
+The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warrant**, with 7,807 arrests. This category appears much more frequently than the second most common charge, **Drug Paraphernalia-Possess/Use**, which has 3,310 arrests.
+
+Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
+
+This chart provides an initial overview of the most frequent arrest categories and helps guide later analysis into when and where these offenses occur.
 ---
 ## Tools Used
 
