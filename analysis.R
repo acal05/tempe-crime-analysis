@@ -95,7 +95,7 @@ ggplot(season_counts, aes(x = arrest_season, y = n)) +
     aes(fill = arrest_season),
     color = "black") +
   labs(
-    title = "Tempe's Total Arrests by Season",
+    title = "Tempe's Arrests by Season Bar Chart",
     x = "Season",
     y = "Number of Arrests"
   ) +
@@ -126,6 +126,56 @@ ggplot(season_counts, aes(x = arrest_season, y = n)) +
 #Saving seasonal arrests bar chart to plots
 ggsave(
   filename = "plots/seasonal_arrests_bar_chart.png",
+  width = 10,
+  height = 6,
+  dpi = 300,
+)
+#Creating line graph for seasonal arrests
+ggplot(season_counts,
+       aes(
+         x = arrest_season,
+         y = n,
+         group = 1
+      )
+    ) +
+  geom_line() +
+  geom_point(
+    aes(color = arrest_season),
+    size = 3.5
+  ) +
+  geom_text(
+    aes(label = scales::comma(n)),
+    hjust = 1.25
+  ) +
+  labs(
+    title = "Tempe's Seasonal Arrests Line Graph",
+    x = "Season",
+    y = "Number of Arrests"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Winter" = "steelblue",
+      "Spring" = "forestgreen",
+      "Summer" = "gold",
+      "Fall" = "darkorange"
+    )
+  ) +
+  scale_y_continuous(
+    labels = scales::comma
+  ) +
+  theme_bw() +
+  theme (
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 18,
+      face = "bold"
+    ),
+    axis.text.x = element_text(size = 9),
+    legend.position = "none"
+  )      
+#Saving Seasonal Line Graph to plots
+ggsave(
+  filename = "plots/seasonal_arrests_line_graph.png",
   width = 10,
   height = 6,
   dpi = 300,
