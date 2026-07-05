@@ -1,6 +1,7 @@
 #load the necessary packages
 library(tidyverse)
 library(lubridate)
+library(plotly)
 #import data
 crime_data <- read_csv("data/Temp_Agol_Arrests_Con_TypeA_OpenData.csv")
 #looking at the columns
@@ -176,6 +177,56 @@ ggplot(season_counts,
 #Saving Seasonal Line Graph to plots
 ggsave(
   filename = "plots/seasonal_arrests_line_graph.png",
+  width = 10,
+  height = 6,
+  dpi = 300,
+)
+#Getting the range of this data set
+#Dataset spans May 28, 2023 through May 26, 2026
+#May has slightly few observations
+range(crime_data_clean$arrest_dt)
+#Getting the count of each month
+monthly_counts <- crime_data_clean %>%
+  count(arrest_month_name)
+monthly_counts
+#Creating Monthly arrests line graph
+monthly_arrests_plot <- ggplot(monthly_counts,
+       aes(
+         x = arrest_month_name,
+         y = n,
+         group = 1,
+         text=paste(
+          "Month:", arrest_month_name,
+         "<br>Arrests:", scales::comma(n)
+         )
+       )
+      )+
+  geom_line(
+    size = 1
+  )+
+  geom_point(
+    size = 2
+  )+
+  labs(
+    title = "Tempe's Monthly Arrests Line Graph",
+    x = "Month",
+    y = "Number of Arrests"
+  ) +
+  scale_y_continuous(
+    labels = scales::comma
+  )+
+  theme_bw() +
+  theme (
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 18,
+      face = 'bold'
+    )
+  )
+ggplotly(monthly_arrests_plot, tooltip = "text")
+#Saving Monthly Line Graph to plots
+ggsave(
+  filename = "plots/monthly_arrests_line_graph.png",
   width = 10,
   height = 6,
   dpi = 300,

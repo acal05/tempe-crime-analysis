@@ -32,8 +32,8 @@ The dataset contains over 43,000 arrest records with information including:
 Current questions include:
 
 - What are the most common arrest charges?
-- Which months experience the most arrests?
 - Do arrest patterns change by season?
+- Which months experience the most arrests?
 - Are weekends different from weekdays?
 - What times of day have the highest arrest activity?
 - How have arrest patterns changed over time?
@@ -43,7 +43,7 @@ Additional questions will be added as new patterns emerge during the analysis.
 ---
 # Analysis
 
-## 1. Top 10 Arrest Charges
+## 1. Top 10 Arrest Charges (Bar Chart)
 ### Visualization
 
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
@@ -54,14 +54,20 @@ The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warr
 Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
 
 ---
-## 2.a. Seasonal Arrest Patterns (Bar Chart)
+## 2. Monthly Arrest Patterns (Line Graph)
+![Monthly Arrests Bar Chart](plots/monthly_arrests_line_graph.png)
+-September recorded the highest number of arrests (3,999).
+-Arrests generally increased from late spring into early fall.
+-November had the lowest number of arrests (3,155).
+-The dataset spans May 28, 2023 through May 26, 2026. Monthly totals include all available records.
+## 3.a. Seasonal Arrest Patterns (Bar Chart)
 ![Seasonal Arrests Bar Chart](plots/seasonal_arrests_bar_chart.png)
 ### Seasonal Arrest Patterns Bar Chart Analysis
 - Arrest activity remains relatively consistent throughout the year.
 - Summer records the highest number of arrests (11,412), while Winter has the fewest (10,525).
 - Seasonal differences are modest, suggesting that arrests do not vary dramatically between seasons.
 - Future analyses by month and hour may reveal more detailed temporal patterns that are not visible at the seasonal level.
-## 2.b. Seasonal Arrest Patterns (Line Graph)
+## 3.b. Seasonal Arrest Patterns (Line Graph)
 ![Seasonal Arrests Line Graph](plots/seasonal_arrests_line_graph.png)
 ### Seasonal Arrest Line Graph Analysis
 -The overall pattern suggests a modest seasonal increase during the warmer months rather than dramatic fluctuations throughout the year.
@@ -88,10 +94,9 @@ Completed:
 - Identified the Top 10 arrest charges
 - Created the first visualization using ggplot2
 - Converted date-time values for future time-based analysis
+- Seasonal analysis
 
 In Progress:
-
-- Seasonal analysis
 - Monthly crime trends
 - Day-of-week analysis
 - Additional visualizations
@@ -102,7 +107,6 @@ In Progress:
 
 Planned additions include:
 
-- Seasonal crime analysis
 - Monthly arrest trends
 - Day-of-week analysis
 - Hour-of-day analysis
