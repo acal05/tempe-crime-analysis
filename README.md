@@ -1,4 +1,4 @@
-# Tempe Crime Analysis
+# Tempe Crime Exploratory Data Analysis
 
 ## Project Overview
 
@@ -11,7 +11,19 @@ This project is being developed as part of my personal data science portfolio
 while studying Data Science at Arizona State University.
 
 ---
+## Table of Contents
 
+- Project Overview
+- Dataset
+- Research Questions
+- Analysis
+  - Top 10 Arrest Charges
+  - Monthly Arrest Patterns
+  - Seasonal Arrest Patterns
+  - Hourly Arrest Patterns
+- Tools Used
+- Current Progress
+- Future Improvements
 ## Dataset
 
 Source:
@@ -44,38 +56,57 @@ Additional questions will be added as new patterns emerge during the analysis.
 # Analysis
 
 ## 1. Top 10 Arrest Charges (Bar Chart)
-### Visualization
-
+### Figure
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
 ### Top 10 Arrest Charges Analysis
--The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warrant**, with 7,807 arrests. This category appears much more frequently than the second most common charge, **Drug Paraphernalia-Possess/Use**, which has 3,310 arrests.
--Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
-
+Key Findings
+-Fugitive from Justice (FOJ) Warrant is by far the most common arrest charge, 
+accounting for 7,807 arrests, more than double the second most common offense.
+-Several of the most common charges involve warrants, drug offenses, and 
+property-related crimes rather than violent offenses.
+-The large difference between the first and second ranked charges suggests 
+warrant enforcement contributes substantially to overall arrest activity.
 ---
 ## 2. Monthly Arrest Patterns (Line Graph)
+### Figure
 ![Monthly Arrests Bar Chart](plots/monthly_arrests_line_graph.png)
--September recorded the highest number of arrests (3,999).
--Arrests generally increased from late spring into early fall.
--November had the lowest number of arrests (3,155).
--The dataset spans May 28, 2023 through May 26, 2026. Monthly totals include all available records.
+-Arrest activity gradually increases from spring through early fall before
+declining toward the end of the year.
+-September records the highest number of arrests (3,999), while November 
+records the lowest (3,155).
+-The variation across months is moderate, suggesting arrests occur consistently 
+throughout the year rather than being concentrated in one season.
 ## 3.a. Seasonal Arrest Patterns (Bar Chart)
+### Figure
 ![Seasonal Arrests Bar Chart](plots/seasonal_arrests_bar_chart.png)
 ### Seasonal Arrest Patterns Bar Chart Analysis
-- Arrest activity remains relatively consistent throughout the year.
-- Summer records the highest number of arrests (11,412), while Winter has the fewest (10,525).
-- Seasonal differences are modest, suggesting that arrests do not vary dramatically between seasons.
-- Future analyses by month and hour may reveal more detailed temporal patterns that are not visible at the seasonal level.
+-Arrest totals remain relatively consistent across all four seasons.
+-Summer records the highest arrest total (11,412), while Winter records the 
+lowest (10,525).
+-Seasonal differences are relatively small, indicating that season alone is not 
+a major driver of arrest frequency.
 ## 3.b. Seasonal Arrest Patterns (Line Graph)
+### Figure
 ![Seasonal Arrests Line Graph](plots/seasonal_arrests_line_graph.png)
 ### Seasonal Arrest Line Graph Analysis
--The overall pattern suggests a modest seasonal increase during the warmer months rather than dramatic fluctuations throughout the year.
--The line graph emphasizes the progression of arrests across seasons, making the overall trend easier to identify than the bar chart.
-## 4.b. Hourly Arrest Pattern(Line Graph)
+-The line graph highlights the gradual increase in arrests from Winter to Summer
+before a slight decline in Fall.
+-Compared with the bar chart, the line graph makes the overall seasonal trend 
+easier to recognize.
+-Both visualizations support the conclusion that seasonal variation exists but 
+remains relatively modest.
+## 4.a. Hourly Arrest Pattern(Line Graph)
+### Figure
 ![Seasonal Arrests Line Graph](plots/hourly_arrests_line_graph.png)
 ### Hourly Arrest Analysis
--This visualization examines how arrest frequency changes throughout a typical 24-hour period. The original arrest timestamps were cleaned and converted into separate hourly values using feature engineering with the `lubridate` package. The hours were then formatted into a 12-hour AM/PM format to improve readability.
--An interactive line chart was created using Plotly, allowing users to hover over each point to view the exact number of arrests for a given hour. This makes it easier to identify trends and peak arrest times throughout the day.
-
+-Arrest activity is highest during the early morning hours around 1 AM, 
+indicating increased enforcement or criminal activity overnight.
+-Arrest counts decline sharply during the early morning before gradually 
+increasing throughout the afternoon and evening.
+-A secondary increase during the late evening suggests arrest activity remains
+elevated after typical business hours.
+-The interactive Plotly visualization allows users to inspect the exact arrest 
+count for every hour of the day.
 ## Tools Used
 ##
 - R
