@@ -1,4 +1,5 @@
 #load the necessary packages
+library(ggrepel)
 library(tidyverse)
 library(lubridate)
 library(plotly)
@@ -227,6 +228,66 @@ ggplotly(monthly_arrests_plot, tooltip = "text")
 #Saving Monthly Line Graph to plots
 ggsave(
   filename = "plots/monthly_arrests_line_graph.png",
+  width = 10,
+  height = 6,
+  dpi = 300,
+)
+#Getting the count of arrests by hour and converting hours into AM/PM
+hourly_counts <- crime_data_clean %>%
+  count(arrest_hour) %>%
+  mutate(
+    arrest_hour_label = trimws(
+      format(
+      strptime(arrest_hour, format = "%H"),
+      format = "%l %p"
+    )
+  ),
+  arrest_hour_label = factor(
+    arrest_hour_label,
+    levels = arrest_hour_label
+  )
+)
+View(hourly_counts)
+#Creating line graph for arrests by hour
+hourly_arrests_plot <- ggplot(
+  hourly_counts,
+      aes(
+        x = arrest_hour_label,
+        y = n,
+        group = 1,
+        text = paste(
+          "Hour:", arrest_hour_label,
+          "<br>Arrests:", scales::comma(n)
+        )
+      )
+)+
+  geom_line(
+    color = "skyblue3",
+    size = 1)+
+  labs(
+    title = "Tempe's Hourly Arrests Line Graph",
+    x = "Hour",
+    y = "Number of Arrests"
+  ) +
+  scale_y_continuous(
+    labels = scales::comma
+  )+
+  theme_bw()+
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 18,
+      face = 'bold'
+    ),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1
+    )
+  )
+ggplotly(hourly_arrests_plot, tooltip = "text")
+#Saving Hourly Line Graph to plots
+ggsave(
+  filename = "plots/hourly_arrests_line_graph.png",
   width = 10,
   height = 6,
   dpi = 300,

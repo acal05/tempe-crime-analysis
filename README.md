@@ -48,10 +48,8 @@ Additional questions will be added as new patterns emerge during the analysis.
 
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
 ### Top 10 Arrest Charges Analysis
-
-The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warrant**, with 7,807 arrests. This category appears much more frequently than the second most common charge, **Drug Paraphernalia-Possess/Use**, which has 3,310 arrests.
-
-Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
+-The most common arrest charge in the dataset is **Fugitive from Justice FOJ Warrant**, with 7,807 arrests. This category appears much more frequently than the second most common charge, **Drug Paraphernalia-Possess/Use**, which has 3,310 arrests.
+-Several of the top charges are related to warrants, drug offenses, trespassing, and public order offenses. This suggests that many arrests in the dataset are connected to recurring legal, substance-related, and low-level property or conduct issues rather than one single type of violent offense.
 
 ---
 ## 2. Monthly Arrest Patterns (Line Graph)
@@ -72,6 +70,12 @@ Several of the top charges are related to warrants, drug offenses, trespassing, 
 ### Seasonal Arrest Line Graph Analysis
 -The overall pattern suggests a modest seasonal increase during the warmer months rather than dramatic fluctuations throughout the year.
 -The line graph emphasizes the progression of arrests across seasons, making the overall trend easier to identify than the bar chart.
+## 4.b. Hourly Arrest Pattern(Line Graph)
+![Seasonal Arrests Line Graph](plots/hourly_arrests_line_graph.png)
+### Hourly Arrest Analysis
+-This visualization examines how arrest frequency changes throughout a typical 24-hour period. The original arrest timestamps were cleaned and converted into separate hourly values using feature engineering with the `lubridate` package. The hours were then formatted into a 12-hour AM/PM format to improve readability.
+-An interactive line chart was created using Plotly, allowing users to hover over each point to view the exact number of arrests for a given hour. This makes it easier to identify trends and peak arrest times throughout the day.
+
 ## Tools Used
 ##
 - R
@@ -95,21 +99,21 @@ Completed:
 - Created the first visualization using ggplot2
 - Converted date-time values for future time-based analysis
 - Seasonal analysis
+- Monthly arrest trends
+- Hour-of-day analysis
+
 
 In Progress:
-- Monthly crime trends
 - Day-of-week analysis
 - Additional visualizations
+
 
 ---
 
 ## Future Improvements
 
 Planned additions include:
-
-- Monthly arrest trends
 - Day-of-week analysis
-- Hour-of-day analysis
 - Arrest type comparisons
 - Geographic crime visualizations
 - Interactive dashboard
