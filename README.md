@@ -49,6 +49,7 @@ Current questions include:
 - Are weekends different from weekdays?
 - What times of day have the highest arrest activity?
 - How have arrest patterns changed over time?
+- What are the geographical patterns?
 
 Additional questions will be added as new patterns emerge during the analysis.
 
@@ -96,9 +97,23 @@ easier to recognize.
 * Both visualizations support the conclusion that seasonal variation exists but 
 remains relatively modest.
 
-## 4.a. Hourly Arrest Pattern(Line Graph)
+## 4.q Hourly Arrest Patterns (Bar Chart)
+###Figure
+![Hourly Arrests Line Graph](plots/hourly_arrests_bar_chart.png)
+### Hourly Arrest Analysis
+* Arrest activity peaks during the overnight hours, with the highest number of 
+arrests occurring around **1:00 AM**.
+* Arrests decline sharply during the early morning hours before gradually 
+increasing throughout the day.
+* A secondary period of elevated arrest activity occurs during the afternoon 
+and late evening, suggesting multiple periods of increased law enforcement activity.
+* An interactive Plotly version of this visualization is available in the 
+project's interactive visualizations (coming soon), allowing users to hover over
+each hour to view the exact arrest totals.
+
+## 4.b. Hourly Arrest Patterns (Line Graph)
 ### Figure
-![Seasonal Arrests Line Graph](plots/hourly_arrests_line_graph.png)
+![Hourly Arrests Line Graph](plots/hourly_arrests_line_graph.png)
 ### Hourly Arrest Analysis
 * Arrest activity is highest during the early morning hours around 1 AM, 
 indicating increased enforcement or criminal activity overnight.
@@ -108,6 +123,17 @@ increasing throughout the afternoon and evening.
 elevated after typical business hours.
 * The interactive Plotly visualization allows users to inspect the exact arrest 
 count for every hour of the day.
+
+## Top Locations Bar Chart
+![Top Locations Bar Chart](plots/top_locations_plot.png)
+* S Mill Avenue recorded substantially more arrests than any other roadway in 
+the dataset.
+* Several major transportation corridors—including Baseline Road, Apache Blvd, 
+Scottsdale Road, and Rural Road—appear among the highest arrest locations.
+* The concentration of arrests along major arterial roads suggests enforcement 
+activity and traffic-related incidents contribute heavily to overall arrest volume.
+*This visualization identifies geographic corridors that may warrant additional 
+public safety analysis or resource allocation.
 
 ## Tools Used
 ##
@@ -119,6 +145,12 @@ count for every hour of the day.
 - Git
 - GitHub
 
+## Interactive Visualizations
+
+Several charts in this project have also been developed as interactive Plotly 
+visualizations. Interactive versions will be published using GitHub Pages as the
+project continues to expand, allowing users to hover over data points and explore 
+exact values.
 ---
 
 ## Current Progress
@@ -137,7 +169,7 @@ Completed:
 
 
 In Progress:
-- Day-of-week analysis
+- Geographical analysis
 - Additional visualizations
 
 
@@ -146,8 +178,6 @@ In Progress:
 ## Future Improvements
 
 Planned additions include:
-- Day-of-week analysis
-- Arrest type comparisons
 - Geographic crime visualizations
 - Interactive dashboard
 - Statistical modeling of crime patterns

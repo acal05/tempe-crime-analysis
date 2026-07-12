@@ -3,6 +3,7 @@ library(ggrepel)
 library(tidyverse)
 library(lubridate)
 library(plotly)
+library(stringr)
 #import data
 crime_data <- read_csv("data/Temp_Agol_Arrests_Con_TypeA_OpenData.csv")
 #looking at the columns
@@ -23,7 +24,14 @@ top_charges <- crime_data %>%
 top_charges
 
 #Make a plot for top ten charges
-top10_plot <- ggplot(top_charges, aes(x = reorder(charge, n), y = n)) +
+top10_plot <- 
+  ggplot(top_charges, 
+         aes(
+           x = reorder(charge, n), 
+           y = n,
+           text = paste(
+             "<br>Arrests:", scales::comma(n)
+             ))) +
   geom_col(
     fill = "steelblue",
     color = "black") +
@@ -42,7 +50,8 @@ top10_plot <- ggplot(top_charges, aes(x = reorder(charge, n), y = n)) +
    
     )
   )
-top10_plot
+ggplotly(top10_plot, tooltip = "text")
+
 #Saving the top 10 charges plot
 ggsave(
   filename = "plots/top_10_arrest_charges.png",
@@ -140,7 +149,9 @@ ggplot(season_counts,
          group = 1
       )
     ) +
-  geom_line() +
+  geom_line(
+    size = 1
+  ) +
   geom_point(
     aes(color = arrest_season),
     size = 3.5
@@ -288,6 +299,103 @@ ggplotly(hourly_arrests_plot, tooltip = "text")
 #Saving Hourly Line Graph to plots
 ggsave(
   filename = "plots/hourly_arrests_line_graph.png",
+  width = 10,
+  height = 6,
+  dpi = 300,
+)
+#Creating Tempe's Hourly Arrests Bar Chart
+hourly_arrests_bar_graph <-
+  ggplot(hourly_counts, aes(
+  x = arrest_hour_label, y = n,
+  text = paste(
+    "Hour:", arrest_hour_label,
+    "<br>Arrests:", scales::comma(n)
+                          ))) +
+  geom_col(
+    fill = "steelblue1",
+    color = "black"
+  ) +
+  labs(
+    title = "Tempe's Hourly Arrests Bar Chart",
+    x = "Hour",
+    y = "Number of Arrests"
+  )+
+  scale_y_continuous(
+    labels = scales::comma,
+  ) +
+  theme_bw()+
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 18,
+      face = "bold"
+    )
+  )
+  ggplotly(hourly_arrests_bar_graph, tooltip = "text")
+#save hourly bar chart
+ggsave(
+    filename = "plots/hourly_arrests_bar_chart.png",
+    width = 10,
+    height = 6,
+    dpi = 300,
+  )
+#Getting the informational to make geographic visualizations
+names(crime_data_clean)
+summary(crime_data_clean$X)
+summary(crime_data_clean$Y)
+head(crime_data_clean[, c("X", "Y")])
+head(crime_data_clean$location, 20)
+crime_data_clean %>%
+  count(location, sort = TRUE) %>%
+  head(20)
+#Cutting out the numbers from the streets
+crime_data_clean <- crime_data_clean %>%
+  mutate(
+    street_name = str_remove(location, "^[0-9X]+\\s+")
+  )
+crime_data_clean %>%
+  select(location, street_name) %>%
+  slice_head(n = 20)
+#Creating top arrests locations dataset
+top_locations <-
+  crime_data_clean %>% 
+  count(street_name, sort = TRUE) %>%
+  slice_head(n = 15)
+top_locations
+#Creating the top arrests locations plot
+top_locations_plot <- 
+  ggplot(top_locations,
+         aes(
+           x = reorder(street_name, n),
+           y = n,
+           text = paste(
+             "Location:", street_name,
+             "<br>Arrests:", scales::comma(n)
+           )
+         )
+        )+
+  geom_col(
+    fill = "steelblue",
+    color = "black") +
+    coord_flip() +
+    labs(
+      title = "Tempe's Top Locations of Arrests",
+      x = "Location",
+      y = "Number of Arrests"
+    )+
+  theme_bw()+
+  theme(
+    plot.title = element_text(
+      size = 24,
+      face = "bold",
+      hjust = 0.5
+    )
+  )
+ggplotly(top_locations_plot, tooltip = "text")
+
+#Saving top locations bar chart graph
+ggsave(
+  filename = "plots/top_locations_plot.png",
   width = 10,
   height = 6,
   dpi = 300,
