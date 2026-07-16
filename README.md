@@ -17,6 +17,7 @@ while studying Data Science at Arizona State University.
 - Dataset
 - Research Questions
 - Analysis
+  - Tempe Crime Heat Map
   - Top 10 Arrest Charges
   - Monthly Arrest Patterns
   - Seasonal Arrest Patterns
@@ -56,7 +57,33 @@ Additional questions will be added as new patterns emerge during the analysis.
 ---
 # Analysis
 
-## 1. Top 10 Arrest Charges (Bar Chart)
+## 1. Geographic Arrest Density Heat Map
+
+### Interactive Visualization
+
+[View the interactive arrest density heat map](https://acal05.github.io/tempe-crime-analysis/)
+
+### Key Insights
+
+* Arrest activity is concentrated in several distinct geographic hotspots rather
+  than being distributed evenly throughout the dataset.
+* Higher-density areas appear along major commercial and transportation corridors.
+* The heat map reveals localized spatial patterns that are difficult to identify 
+from street-level arrest totals alone.
+* The interactive version allows users to zoom and explore arrest-density patterns
+at different geographic scales.
+
+### Methodology
+
+The original dataset was stored at the charge level, meaning a single arrest could appear in multiple rows when multiple charges were recorded. The mapping dataset was reduced to one row per unique arrest incident using the `rin` identifier.
+
+The original projected coordinates were assigned the EPSG:2223 coordinate reference system and transformed to WGS 84 latitude and longitude coordinates using the `sf` package. The interactive heat map was then created with `leaflet` and `leaflet.extras`.
+
+### Dataset Note
+
+The map represents the complete arrest dataset as provided. Some coordinates appear outside Tempe’s municipal boundaries. These records were retained to maintain consistency with the other analyses in the project.
+
+## 2. Top 10 Arrest Charges (Bar Chart)
 ### Figure
 ![Top 10 Arrest Charges](plots/top_10_arrest_charges.png)
 * Fugitive from Justice (FOJ) Warrant is by far the most common arrest charge, 
@@ -66,7 +93,7 @@ property-related crimes rather than violent offenses.
 * The large difference between the first and second ranked charges suggests 
 warrant enforcement contributes substantially to overall arrest activity.
 
-## 2. Monthly Arrest Patterns (Line Graph)
+## 3. Monthly Arrest Patterns (Line Graph)
 ### Figure
 ![Monthly Arrests Bar Chart](plots/monthly_arrests_line_graph.png)
 * Arrest activity gradually increases from spring through early fall before
@@ -76,7 +103,7 @@ records the lowest (3,155).
 * The variation across months is moderate, suggesting arrests occur consistently 
 throughout the year rather than being concentrated in one season.
 
-## 3.a. Seasonal Arrest Patterns (Bar Chart)
+## 4.a. Seasonal Arrest Patterns (Bar Chart)
 ### Figure
 ![Seasonal Arrests Bar Chart](plots/seasonal_arrests_bar_chart.png)
 ### Seasonal Arrest Patterns Bar Chart Analysis
@@ -86,7 +113,7 @@ lowest (10,525).
 * Seasonal differences are relatively small, indicating that season alone is not 
 a major driver of arrest frequency.
 
-## 3.b. Seasonal Arrest Patterns (Line Graph)
+## 4.b. Seasonal Arrest Patterns (Line Graph)
 ### Figure
 ![Seasonal Arrests Line Graph](plots/seasonal_arrests_line_graph.png)
 ### Seasonal Arrest Line Graph Analysis
@@ -97,7 +124,7 @@ easier to recognize.
 * Both visualizations support the conclusion that seasonal variation exists but 
 remains relatively modest.
 
-## 4.q Hourly Arrest Patterns (Bar Chart)
+## 5. Hourly Arrest Patterns (Bar Chart)
 ###Figure
 ![Hourly Arrests Line Graph](plots/hourly_arrests_bar_chart.png)
 ### Hourly Arrest Analysis
@@ -111,7 +138,7 @@ and late evening, suggesting multiple periods of increased law enforcement activ
 project's interactive visualizations (coming soon), allowing users to hover over
 each hour to view the exact arrest totals.
 
-## 4.b. Hourly Arrest Patterns (Line Graph)
+## 5.b. Hourly Arrest Patterns (Line Graph)
 ### Figure
 ![Hourly Arrests Line Graph](plots/hourly_arrests_line_graph.png)
 ### Hourly Arrest Analysis
@@ -124,8 +151,10 @@ elevated after typical business hours.
 * The interactive Plotly visualization allows users to inspect the exact arrest 
 count for every hour of the day.
 
-## Top Locations Bar Chart
+## 6. Top Locations Bar Chart
 ![Top Locations Bar Chart](plots/top_locations_plot.png)
+
+### Top Locations Analysis
 * S Mill Avenue recorded substantially more arrests than any other roadway in 
 the dataset.
 * Several major transportation corridors—including Baseline Road, Apache Blvd, 

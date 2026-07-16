@@ -4,6 +4,10 @@ library(tidyverse)
 library(lubridate)
 library(plotly)
 library(stringr)
+library(sf)
+library(leaflet)
+library(leaflet.extras)
+library(htmlwidgets)
 #import data
 crime_data <- read_csv("data/Temp_Agol_Arrests_Con_TypeA_OpenData.csv")
 #looking at the columns
@@ -400,3 +404,65 @@ ggsave(
   height = 6,
   dpi = 300,
 )
+
+#Prepping data for the geographic arrest heat map
+# Creating one row for each unique arrest incident before mapping
+arrest_map_data <-
+  crime_data_clean %>%
+  distinct(
+    rin,
+    .keep_all = TRUE
+  ) %>%
+  filter(
+    !is.na(X),
+    !is.na(Y)
+  )
+#View the new mapping dataset
+arrest_map_data
+
+#Compare row counts before and after removing duplicates
+nrow(crime_data_clean)
+nrow(arrest_map_data)
+#Convert the arrest data into a spacial object using the X and Y coordinates
+arrest_map_sf <- st_as_sf(
+  arrest_map_data,
+  coords = c("X", "Y"),
+  crs = 2223
+)
+#Transform the spacial coordinates into latitude and longitdue for leaflet
+arrest_map_latlon <-
+    arrest_map_sf %>%
+    st_transform(
+      crs = 4326
+  )
+#View the transformed spatial object
+arrest_map_latlon
+
+#Display the first few longitude and latitude coordinates
+head(st_coordinates(arrest_map_latlon))
+
+#Create a basic interaction leaflet map with arrest locations
+arrest_heat_map <- arrest_map_latlon %>%
+  leaflet() %>%
+  addTiles() %>%
+  addHeatmap(
+  blur = 12,
+  radius = 9,
+  max = 1
+  )%>%
+  setView(
+    lng = -111.925,
+    lat = 33.385,
+    zoom = 12
+  )
+#Display the interactive map
+arrest_heat_map
+#Save the interactive heat map as an HTMl file
+saveWidget(
+  widget = arrest_heat_map,
+  file = "docs/index.html",
+  selfcontained = TRUE,
+  title = "Tempe Arrest Density Heat Map"
+)
+
+
