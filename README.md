@@ -11,6 +11,21 @@ This project is being developed as part of my personal data science portfolio
 while studying Data Science at Arizona State University.
 
 ---
+## 🌐 Interactive Dashboard
+
+Explore the interactive visualizations created during this analysis.
+
+| Visualization | Launch |
+|:---|:---:|
+| 🏠 Project Homepage | [Open](https://acal05.github.io/tempe-crime-analysis/) |
+| 📊 Top 10 Arrest Charges | [Open](https://acal05.github.io/tempe-crime-analysis/top_charges.html) |
+| 📅 Monthly Arrest Trends | [Open](https://acal05.github.io/tempe-crime-analysis/monthly_arrests.html) |
+| 🕒 Hourly Arrest Trends | [Open](https://acal05.github.io/tempe-crime-analysis/hourly_arrests_line.html) |
+| 📈 Hourly Arrest Bar Chart | [Open](https://acal05.github.io/tempe-crime-analysis/hourly_arrests_bar.html) |
+| 📍 Top Arrest Locations | [Open](https://acal05.github.io/tempe-crime-analysis/top_locations.html) |
+| 🔥 Geographic Arrest Heat Map | [Open](https://acal05.github.io/tempe-crime-analysis/arrest_heat_map.html) |
+
+> Hover over points, bars, and map regions to explore the underlying data interactively.
 ## Table of Contents
 
 - Project Overview

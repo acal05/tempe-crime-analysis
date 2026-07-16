@@ -8,6 +8,11 @@ library(sf)
 library(leaflet)
 library(leaflet.extras)
 library(htmlwidgets)
+# Create the docs folder if it does not already exist
+dir.create(
+  path = "docs",
+  showWarnings = FALSE
+)
 #import data
 crime_data <- read_csv("data/Temp_Agol_Arrests_Con_TypeA_OpenData.csv")
 #looking at the columns
@@ -54,7 +59,23 @@ top10_plot <-
    
     )
   )
-ggplotly(top10_plot, tooltip = "text")
+
+#Convert the top-charges chart into an interactive Plotly visualization
+top_charges_interactive <- ggplotly(
+  top10_plot,
+  tooltip = "text"
+)
+
+#Display the interactive top-charges chart
+top_charges_interactive
+
+#Save the interactive top-charges chart as an HTML file
+saveWidget(
+  widget = top_charges_interactive,
+  file = "docs/top_charges.html",
+  selfcontained = TRUE,
+  title = "Top 10 Arrest Charges in Tempe"
+)
 
 #Saving the top 10 charges plot
 ggsave(
@@ -73,9 +94,9 @@ crime_data_clean <- crime_data
 crime_data_clean$arrest_datetime <- ymd_hms(crime_data_clean$arrest_dt)
 class(crime_data_clean$arrest_datetime)
 head(crime_data_clean$arrest_datetime)
-# Feature Engineering
-# Create new variables from the arrest date and time to make 
-# future analysis easier.
+#Feature Engineering
+#Create new variables from the arrest date and time to make 
+#future analysis easier.
 crime_data_clean <- crime_data_clean %>%
   mutate(
     arrest_year = year(arrest_datetime),
@@ -218,10 +239,8 @@ monthly_arrests_plot <- ggplot(monthly_counts,
        )
       )+
   geom_line(
+    color = "skyblue3",
     size = 1
-  )+
-  geom_point(
-    size = 2
   )+
   labs(
     title = "Tempe's Monthly Arrests Line Graph",
@@ -239,7 +258,22 @@ monthly_arrests_plot <- ggplot(monthly_counts,
       face = 'bold'
     )
   )
-ggplotly(monthly_arrests_plot, tooltip = "text")
+# Convert the monthly-arrests chart into an interactive Plotly visualization
+monthly_arrests_interactive <- ggplotly(
+  monthly_arrests_plot,
+  tooltip = "text"
+)
+
+# Display the interactive monthly-arrests chart
+monthly_arrests_interactive
+
+# Save the interactive monthly-arrests chart as an HTML file
+saveWidget(
+  widget = monthly_arrests_interactive,
+  file = "docs/monthly_arrests.html",
+  selfcontained = TRUE,
+  title = "Monthly Arrest Patterns in Tempe"
+)
 #Saving Monthly Line Graph to plots
 ggsave(
   filename = "plots/monthly_arrests_line_graph.png",
@@ -299,7 +333,22 @@ hourly_arrests_plot <- ggplot(
       hjust = 1
     )
   )
-ggplotly(hourly_arrests_plot, tooltip = "text")
+# Convert the hourly line chart into an interactive Plotly visualization
+hourly_arrests_line_interactive <- ggplotly(
+  hourly_arrests_plot,
+  tooltip = "text"
+)
+
+# Display the interactive hourly line chart
+hourly_arrests_line_interactive
+
+# Save the interactive hourly line chart as an HTML file
+saveWidget(
+  widget = hourly_arrests_line_interactive,
+  file = "docs/hourly_arrests_line.html",
+  selfcontained = TRUE,
+  title = "Hourly Arrest Patterns in Tempe"
+)
 #Saving Hourly Line Graph to plots
 ggsave(
   filename = "plots/hourly_arrests_line_graph.png",
@@ -335,7 +384,22 @@ hourly_arrests_bar_graph <-
       face = "bold"
     )
   )
-  ggplotly(hourly_arrests_bar_graph, tooltip = "text")
+# Convert the hourly bar chart into an interactive Plotly visualization
+hourly_arrests_bar_interactive <- ggplotly(
+  hourly_arrests_bar_graph,
+  tooltip = "text"
+)
+
+# Display the interactive hourly bar chart
+hourly_arrests_bar_interactive
+
+# Save the interactive hourly bar chart as an HTML file
+saveWidget(
+  widget = hourly_arrests_bar_interactive,
+  file = "docs/hourly_arrests_bar.html",
+  selfcontained = TRUE,
+  title = "Hourly Arrest Counts in Tempe"
+)
 #save hourly bar chart
 ggsave(
     filename = "plots/hourly_arrests_bar_chart.png",
@@ -395,8 +459,22 @@ top_locations_plot <-
       hjust = 0.5
     )
   )
-ggplotly(top_locations_plot, tooltip = "text")
+# Convert the top-locations chart into an interactive Plotly visualization
+top_locations_interactive <- ggplotly(
+  top_locations_plot,
+  tooltip = "text"
+)
 
+# Display the interactive top-locations chart
+top_locations_interactive
+
+# Save the interactive top-locations chart as an HTML file
+saveWidget(
+  widget = top_locations_interactive,
+  file = "docs/top_locations.html",
+  selfcontained = TRUE,
+  title = "Top Arrest Locations in Tempe"
+)
 #Saving top locations bar chart graph
 ggsave(
   filename = "plots/top_locations_plot.png",
@@ -460,7 +538,7 @@ arrest_heat_map
 #Save the interactive heat map as an HTMl file
 saveWidget(
   widget = arrest_heat_map,
-  file = "docs/index.html",
+  file = "docs/arrest_heat_map.html",
   selfcontained = TRUE,
   title = "Tempe Arrest Density Heat Map"
 )
